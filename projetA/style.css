@@ -27,17 +27,4 @@ h2 {
   padding-bottom: 8px;
 }
 
-section {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-}
 
-span {
-  margin-right: 10px;
-}
-
-span:nth-child(n+1):before {
-  content: "👩🏼‍🎓";
-
-}

@@ -1,5 +1,5 @@
 export function sortStudents(students, column, direction) {
-  return students.slice().sort((a, b) => {
+  return students.toSorted((a, b) => {
     let result;
     // console.log(a[column]);
     if (typeof a[column] === "number") {

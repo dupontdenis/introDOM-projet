@@ -1,0 +1,58 @@
+import { students } from "./../data.mjs";
+
+const app = document.querySelector("#app");
+
+const groups = Object.groupBy(students, (student) => student.group);
+
+const groupTemplate = `
+    <section>
+        <h2>Groupe {{group}}</h2>
+        <p>{{students}}</p>
+    </section>
+`;
+
+let html = "";
+
+for (const [group, members] of Object.entries(groups)) {
+  let studentItems = "";
+
+  for (const student of members) {
+    studentItems += `<span>${student.name}</span> `;
+  }
+
+  html += groupTemplate
+    .replace("{{group}}", group)
+    .replace("{{students}}", studentItems);
+}
+
+app.innerHTML = html;
+// import { students } from "./../data.mjs";
+
+// const app = document.querySelector("#app");
+
+// const groups = Object.groupBy(students, (student) => student.group);
+
+// const groupTemplate = `
+//     <section>
+//         <h2>Groupe {{group}}</h2>
+//         <ul>
+//             {{students}}
+//         </ul>
+//     </section>
+// `;
+
+// let html = "";
+
+// for (const [group, members] of Object.entries(groups)) {
+//     const studentItems = members
+//         .map((student) => `<li>${student.name}</li>`)
+//         .join("");
+
+//     let groupHtml = groupTemplate;
+//     groupHtml = groupHtml.replace("{{group}}", group);
+//     groupHtml = groupHtml.replace("{{students}}", studentItems);
+
+//     html += groupHtml;
+// }
+
+// app.innerHTML = html;

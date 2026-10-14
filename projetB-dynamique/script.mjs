@@ -9,7 +9,9 @@ const groups = Object.groupBy(students, (student) => student.group);
 const groupEntries = Object.entries(groups);
 
 // Remplir le menu avec les groupes présents uniquement
-const uniqueGroups = [...new Set(students.map((student) => student.group))];
+// const uniqueGroups = [...new Set(students.map((student) => student.group))];
+
+const uniqueGroups = Object.keys(groups);
 
 uniqueGroups.forEach((group) => {
   const option = document.createElement("option");
@@ -19,11 +21,11 @@ uniqueGroups.forEach((group) => {
 });
 
 // Modèle HTML d'une carte
-const groupTemplate = `
+const studentTemplate = `
     <div class="col-md-4">
         <section class="card h-100 shadow-sm">
             <div class="card-header fw-bold">
-                Groupe {{group}}
+              {{group}}
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
@@ -36,9 +38,20 @@ const groupTemplate = `
 
 // Afficher les groupes
 function renderGroups(query) {
-  const filteredGroups = groupEntries.filter(
-    ([group]) => query === "" || group === query,
-  );
+  console.log("Recherche :", query);
+  console.log("groupEntries :", groupEntries); // tableau de paires [groupe, membres]
+
+  // const filteredGroups = groupEntries.filter(
+  //   ([group,membres]) => {
+  //     console.log("group :", group, "membres :", membres  ); // Afficher le groupe et ses membres
+  //     return query === "" || group === query; // Filtrer les groupes selon la recherche
+  //   }
+  // );
+
+    const filteredGroups = groupEntries.filter(([group]) => 
+      query === "" || group === query // Filtrer les groupes selon la recherche
+    );
+  console.log("filteredGroups :", filteredGroups); // tableau de paires [groupe, membres]
 
   let html = "";
 
@@ -47,7 +60,7 @@ function renderGroups(query) {
       .map((student) => `<li class="list-group-item">${student.name}</li>`)
       .join("");
 
-    let groupHtml = groupTemplate;
+    let groupHtml = studentTemplate;
     groupHtml = groupHtml.replace("{{group}}", group);
     groupHtml = groupHtml.replace("{{students}}", studentItems);
 

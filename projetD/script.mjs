@@ -4,21 +4,21 @@ import { sortStudents } from "./utils.mjs";
 const app = document.querySelector("#app");
 
 let currentColumn = "";
-let direction = "asc";
+let direction = "desc";
 
 const tableTemplate = `
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
-<th data-sort="name">
-    Nom <span class="sort-arrow">{{nameArrow}}</span>
-</th>
-<th data-sort="group">
-    Groupe <span class="sort-arrow">{{groupArrow}}</span>
-</th>
-<th data-sort="mark">
-    Note <span class="sort-arrow">{{markArrow}}</span>
-</th>
+                <th data-sort="name">
+                    Nom <span class="sort-arrow">{{nameArrow}}</span>
+                </th>
+                <th data-sort="group">
+                    Groupe <span class="sort-arrow">{{groupArrow}}</span>
+                </th>
+                <th data-sort="mark">
+                    Note <span class="sort-arrow">{{markArrow}}</span>
+                </th>
             </thead>
             <tbody>
                 {{students}}
@@ -70,17 +70,14 @@ function displayStudents(list) {
   app.innerHTML = tableHtml;
 }
 
-displayStudents(students);
-
 app.addEventListener("click", (event) => {
   const header = event.target.closest("[data-sort]");
-  // console.log(header);
   if (!header) {
     return;
   }
 
   const column = header.dataset.sort;
-  console.log(column)
+  console.log(column);
 
   if (column === currentColumn) {
     direction = direction === "asc" ? "desc" : "asc";
@@ -93,3 +90,8 @@ app.addEventListener("click", (event) => {
 
   displayStudents(sortedStudents);
 });
+
+displayStudents(students);
+
+const nameHeader = app.querySelector('[data-sort="name"]');
+nameHeader.click();

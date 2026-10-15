@@ -4,5 +4,4 @@ export const students = [
   { name: "Mohamed", group: "info", mark: 12 },
   { name: "Charlie", group: "bio", mark: 14 },
   { name: "Charlo", group: "droit", mark: 16 },
-
 ];

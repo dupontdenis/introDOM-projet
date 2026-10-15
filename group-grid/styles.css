@@ -1,0 +1,24 @@
+.amphi .card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center the content horizontally */
+}
+
+.amphi .card img {
+  width: 100px;
+  /* Set a fixed width */
+  height: 100px;
+  /* Set a fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the area without stretching */
+  border-radius: 50%;
+  /* Optional: make the image circular */
+  margin-bottom: 10px;
+  /* Optional: add some space below the image */
+}

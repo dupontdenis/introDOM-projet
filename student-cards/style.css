@@ -26,10 +26,22 @@ body {
   margin: 0;
 }
 
-.student::before {
+/* .student::before {
   content: "👤";
   display: block;
   font-size: 50px;
+} */
+img {
+  width: 100px;
+  /* Set a fixed width */
+  height: 100px;
+  /* Set a fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the area without stretching */
+  border-radius: 50%;
+  /* Optional: make the image circular */
+  margin-bottom: 10px;
+  /* Optional: add some space below the image */
 }
 
 /* Couleur selon le groupe */

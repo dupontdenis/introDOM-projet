@@ -4,21 +4,21 @@ import { sortStudents } from "./utils.mjs";
 const app = document.querySelector("#app");
 
 let currentColumn = "";
-let direction = "asc";
+let direction = "desc";
 
 const tableTemplate = `
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
-<th data-sort="name">
-    Nom <span class="sort-arrow">{{nameArrow}}</span>
-</th>
-<th data-sort="group">
-    Groupe <span class="sort-arrow">{{groupArrow}}</span>
-</th>
-<th data-sort="mark">
-    Note <span class="sort-arrow">{{markArrow}}</span>
-</th>
+                <th data-sort="name">
+                    Nom <span class="sort-arrow">{{nameArrow}}</span>
+                </th>
+                <th data-sort="group">
+                    Groupe <span class="sort-arrow">{{groupArrow}}</span>
+                </th>
+                <th data-sort="mark">
+                    Note <span class="sort-arrow">{{markArrow}}</span>
+                </th>
             </thead>
             <tbody>
                 {{students}}
@@ -93,3 +93,6 @@ app.addEventListener("click", (event) => {
 
   displayStudents(sortedStudents);
 });
+
+const nameHeader = app.querySelector('[data-sort="name"]');
+nameHeader.click();

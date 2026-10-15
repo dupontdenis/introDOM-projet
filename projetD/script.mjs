@@ -70,8 +70,11 @@ function displayStudents(list) {
   app.innerHTML = tableHtml;
 }
 
+displayStudents(students);
+
 app.addEventListener("click", (event) => {
   const header = event.target.closest("[data-sort]");
+  // console.log(header);
   if (!header) {
     return;
   }
@@ -90,8 +93,6 @@ app.addEventListener("click", (event) => {
 
   displayStudents(sortedStudents);
 });
-
-displayStudents(students);
 
 const nameHeader = app.querySelector('[data-sort="name"]');
 nameHeader.click();

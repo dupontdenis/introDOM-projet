@@ -1,19 +1,19 @@
-# Introduction to the DOM
+# Introduction au DOM
 
-This workspace contains small JavaScript exercises that render and update student data in a web page. The records are shared from `data.mjs`; each exercise has its own HTML, JavaScript, and sometimes CSS files.
+Cet espace de travail contient de petits exercices JavaScript qui affichent et mettent à jour des données étudiantes dans une page web. Les données sont partagées depuis `data.mjs` ; chaque exercice possède ses propres fichiers HTML et JavaScript, et parfois CSS.
 
-## Exercises
+## Exercices
 
-- [`Cours`](Cours/README.md): render one student card per record using a reusable string template.
-- [`projetA`](projetA/README.md): group students and render one card per group.
-- [`projetB-dynamique`](projetB-dynamique/README.md): filter groups with a select menu.
-- [`projetB-group`](projetB-group/README.md): search groups as text is entered.
-- [`projetB-name`](projetB-name/README.md): search student names as text is entered.
-- [`projetC`](projetC/README.md): select a student and display their details.
-- [`projetD`](projetD/README.md): display and sort students in a table.
+- [`student-cards`](student-cards/README.md) : afficher une carte par étudiant à l’aide d’un modèle de chaîne réutilisable.
+- [`group-cards`](group-cards/README.md) : regrouper les étudiants et afficher une carte par groupe.
+- [`filter-groups-by-select`](filter-groups-by-select/README.md) : filtrer les groupes à l’aide d’un menu déroulant.
+- [`search-groups`](search-groups/README.md) : rechercher des groupes au fil de la saisie.
+- [`search-students-by-name`](search-students-by-name/README.md) : rechercher des étudiants par leur nom au fil de la saisie.
+- [`student-details`](student-details/README.md) : sélectionner un étudiant et afficher ses détails.
+- [`sortable-student-table`](sortable-student-table/README.md) : afficher les étudiants dans un tableau triable.
 
-## Run an exercise
+## Lancer un exercice
 
-Open the exercise's `index.html` using a local web server, such as the VS Code Live Server extension. These pages use JavaScript modules and relative imports, which may not work when opened directly with a `file://` URL. The exercises use modern JavaScript features, so use an up-to-date browser.
+Ouvrez le fichier `index.html` de l’exercice avec un serveur web local, par exemple avec l’extension Live Server de VS Code. Ces pages utilisent des modules JavaScript et des importations relatives, qui peuvent ne pas fonctionner si vous ouvrez directement le fichier avec une URL `file://`. Les exercices utilisent des fonctionnalités JavaScript modernes : utilisez un navigateur à jour.
 
-The root `index.html` is a navigation page for the example projects. The shared student records are in `data.mjs`.
+Le fichier `index.html` à la racine sert de page de navigation vers les exercices. Les données étudiantes partagées se trouvent dans `data.mjs`.

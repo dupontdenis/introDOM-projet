@@ -1,5 +1,5 @@
 
-import { students } from "./../data.mjs";
+import { students } from "../data.mjs";
 
 const app = document.querySelector("#app");
 

@@ -11,6 +11,19 @@ body {
   gap: 20px;
 }
 
+/* Tablettes et téléphones */
+@media (max-width: 600px) {
+  body {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  #app {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
 .student {
   padding: 20px;
   text-align: center;

@@ -1,31 +1,31 @@
 # Une carte par groupe
 
-Cette page affiche une carte HTML pour chaque groupe d’étudiants. Le code est réparti en trois modules afin de séparer les données, leur transformation et leur affichage.
+Cette page présente les étudiants sous forme de cartes, à raison d’une carte par groupe. Le code est réparti en modules qui distinguent les données, leur transformation et leur rendu.
 
 ## Organisation des fichiers
 
-- `../data.mjs` exporte le tableau initial `students`.
-- `transform.mjs` exporte `groupStudentsByGroup(students)`, qui regroupe les étudiants selon la valeur de leur propriété `group`.
-- `render.mjs` contient les fonctions qui génèrent le HTML d’un étudiant, d’une liste d’étudiants et d’une carte de groupe. Seule `renderGroupCard` est exportée, car c’est la fonction utilisée par le module principal.
-- `script.mjs` importe les données et les fonctions, construit le HTML de tous les groupes, puis l’insère dans l’élément `#app`.
-- `index.html` fournit l’élément `#app` et charge `script.mjs` comme module JavaScript.
+- `../data.mjs` fournit le tableau de données `students`.
+- `transform.mjs` exporte `groupStudentsByGroup(students)`, qui rassemble les étudiants selon leur propriété `group`.
+- `render.mjs` définit les fonctions de génération du HTML pour un étudiant, une liste et une carte. Seule `renderGroupCard` est exportée, car le module principal est le seul à en avoir besoin.
+- `script.mjs` importe les données et les fonctions nécessaires, génère les cartes de tous les groupes et les ajoute à l’élément `#app`.
+- `index.html` contient l’élément `#app` et charge `script.mjs` en tant que module JavaScript.
 
-## Parcours des données
+## Du tableau aux cartes
 
-1. `script.mjs` importe `students` depuis `../data.mjs`.
-2. `groupStudentsByGroup(students)` utilise `Object.groupBy()` pour produire un objet dont chaque clé est un nom de groupe et chaque valeur est la liste de ses étudiants.
-3. `Object.entries(studentsByGroup)` transforme cet objet en entrées parcourables. `map()` appelle `renderGroupCard()` pour chaque groupe, puis `join("")` rassemble les cartes dans une seule chaîne HTML.
-4. `renderGroupCard()` délègue la création de la liste à `renderStudentsList()`, qui crée un élément `<li>` par étudiant avec `renderStudentItem()`.
-5. `app.innerHTML = html` affiche le résultat dans la page.
+1. `script.mjs` récupère `students` depuis `../data.mjs`.
+2. `groupStudentsByGroup(students)` s’appuie sur `Object.groupBy()` pour créer un objet associant chaque groupe à la liste de ses étudiants.
+3. `Object.entries(studentsByGroup)` rend les groupes parcourables. `map()` crée une carte avec `renderGroupCard()` pour chacun d’eux, puis `join("")` réunit les cartes dans une chaîne HTML.
+4. `renderGroupCard()` utilise `renderStudentsList()` pour produire la liste du groupe. Cette fonction crée un élément `<li>` pour chaque étudiant à l’aide de `renderStudentItem()`.
+5. Enfin, `app.innerHTML = html` insère le résultat dans la page.
 
-## Templates JavaScript
+## Littéraux de gabarit
 
-Les chaînes HTML sont écrites avec des accents graves. Les valeurs dynamiques sont insérées avec `${...}`, par exemple `${student.name}`. Cette syntaxe est l’interpolation native des littéraux de gabarit JavaScript ; le code n’utilise ni les marqueurs `{{...}}` ni `replace()`.
+Le HTML est construit avec des littéraux de gabarit JavaScript, délimités par des accents graves. Les expressions `${...}` permettent d’y intégrer des valeurs, comme `${student.name}`. Le code utilise cette interpolation native, et non des marqueurs `{{...}}` ou la méthode `replace()`.
 
-## Exécution
+## Lancer la page
 
-Ouvrir `index.html` avec un serveur de développement local, par exemple l’extension Live Server de VS Code. Les modules JavaScript sont chargés par le navigateur au moyen des imports ES modules.
+Ouvrez `index.html` depuis un serveur local, par exemple avec l’extension Live Server de VS Code. Le navigateur pourra ainsi charger les modules JavaScript via les imports ES modules.
 
 ## Sécurité
 
-`innerHTML` interprète son contenu comme du HTML. Les noms affichés ici viennent des données du projet ; si des données non fiables sont ajoutées, il faut les échapper ou les insérer avec des méthodes du DOM comme `textContent`.
+`innerHTML` interprète le contenu comme du HTML. Les noms affichés proviennent actuellement des données du projet. Si vous ajoutez des données non fiables, échappez-les ou insérez-les dans le DOM avec une méthode comme `textContent`.

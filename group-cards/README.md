@@ -5,18 +5,19 @@ Cette page présente les étudiants sous forme de cartes, à raison d’une cart
 ## Organisation des fichiers
 
 - `../data.mjs` fournit le tableau de données `students`.
-- `transform.mjs` exporte `groupStudentsByGroup(students)`, qui rassemble les étudiants selon leur propriété `group`.
-- `render.mjs` définit les fonctions de génération du HTML pour un étudiant, une liste et une carte. Seule `renderGroupCard` est exportée, car le module principal est le seul à en avoir besoin.
-- `script.mjs` importe les données et les fonctions nécessaires, génère les cartes de tous les groupes et les ajoute à l’élément `#app`.
-- `index.html` contient l’élément `#app` et charge `script.mjs` en tant que module JavaScript.
+- `transform.mjs` exporte deux fonctions : `groupStudentsByGroup(students)`, qui rassemble les étudiants selon leur propriété `group`, et `transformStudents(students)`, qui retourne les groupes sous forme de paires `[groupe, étudiants]`.
+- `render.mjs` exporte `render(groups)`, qui génère le HTML des cartes de tous les groupes. Les fonctions de rendu d’un étudiant et d’une carte restent internes au module.
+- `main.mjs` importe les données, `transformStudents` et `render`, puis insère le HTML obtenu dans l’élément `#app`.
+- `index.html` contient l’élément `#app` et charge `main.mjs` en tant que module JavaScript.
 
 ## Du tableau aux cartes
 
-1. `script.mjs` récupère `students` depuis `../data.mjs`.
-2. `groupStudentsByGroup(students)` s’appuie sur `Object.groupBy()` pour créer un objet associant chaque groupe à la liste de ses étudiants.
-3. `Object.entries(studentsByGroup)` rend les groupes parcourables. `map()` crée une carte avec `renderGroupCard()` pour chacun d’eux, puis `join("")` réunit les cartes dans une chaîne HTML.
-4. `renderGroupCard()` utilise `renderStudentsList()` pour produire la liste du groupe. Cette fonction crée un élément `<li>` pour chaque étudiant à l’aide de `renderStudentItem()`.
-5. Enfin, `app.innerHTML = html` insère le résultat dans la page.
+1. `main.mjs` récupère `students` depuis `../data.mjs`.
+2. `transformStudents(students)` appelle `groupStudentsByGroup(students)`, qui s’appuie sur `Object.groupBy()` pour rassembler les étudiants par groupe.
+3. La fonction convertit ensuite l’objet obtenu en paires `[groupe, étudiants]` avec `Object.entries()`.
+4. `render(groups)` crée une carte pour chaque paire, puis réunit les cartes dans une chaîne HTML.
+5. Chaque carte utilise `renderStudentsList()` pour produire la liste du groupe. Cette fonction crée un élément `<li>` pour chaque étudiant à l’aide de `renderStudentItem()`.
+6. Enfin, `document.querySelector("#app").innerHTML = render(groups)` insère le résultat dans la page.
 
 ## Littéraux de gabarit
 

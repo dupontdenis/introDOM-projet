@@ -4,7 +4,7 @@ import { renderGroupCard } from "./render.mjs";
 
 const groups = transformStudentsToGroups(students);
 
-const html = groups
+const html =Object.entries(groups)
   .map(([group, groupStudents]) => renderGroupCard(group, groupStudents))
   .join("");
 

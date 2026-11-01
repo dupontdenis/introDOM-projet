@@ -1,47 +1,20 @@
-# Générer du HTML avec un modèle de chaîne
+# Une carte par groupe
 
-Cet exemple crée une carte pour chaque groupe d’étudiants. Il utilise des chaînes JavaScript ordinaires et les méthodes du DOM, sans bibliothèque de gabarits ni framework.
+Cet exemple transforme un tableau d’étudiants en cartes HTML, une par groupe. Les données sont importées depuis `data.mjs`, regroupées, puis rendues au moyen de fonctions dédiées.
 
-## Fonctionnement de l’affichage
+## Fonctionnement
 
-1. **Sélectionner l’élément de destination**
+1. `groupStudentsByGroup(students)` transforme le tableau d’étudiants en un objet indexé par nom de groupe. Chaque propriété contient les étudiants de ce groupe.
+2. `renderStudentItem(student)` produit l’élément HTML d’un étudiant.
+3. `renderStudentsList(students)` transforme un groupe d’étudiants en liste HTML en appelant `renderStudentItem` pour chacun.
+4. `renderGroupCard(group, students)` construit la carte du groupe et y insère la liste.
+5. `Object.entries(studentsByGroup)` fournit les groupes et leurs membres. `map()` génère une carte pour chaque entrée et `join("")` rassemble les cartes.
+6. `app.innerHTML = html` affiche le HTML dans l’élément `#app` de la page.
 
-   `document.querySelector("#app")` trouve l’élément dans lequel le HTML généré sera affiché.
+## Interpolation des données
 
-2. **Regrouper les données**
-
-   `Object.groupBy(students, (student) => student.group)` crée un objet dont les clés sont les noms des groupes et dont les valeurs sont les tableaux d’étudiants correspondants. `Object.entries(groups)` permet à la boucle `for...of` de parcourir chaque groupe et ses membres.
-
-3. **Créer un modèle de groupe réutilisable**
-
-   `groupTemplate` est un littéral de gabarit JavaScript (la chaîne est délimitée par des accents graves). Il contient le HTML d’une carte et deux marqueurs textuels : `{{group}}` et `{{students}}`.
-
-   Ces marqueurs entre doubles accolades sont de simples espaces réservés textuels. Ce ne sont pas des expressions d’interpolation JavaScript. L’interpolation JavaScript s’écrit `${expression}` dans un littéral de gabarit ; ici, les marqueurs sont remplacés ensuite avec `replace()`.
-
-4. **Construire la liste des étudiants**
-
-   `members.map(...)` transforme chaque étudiant en une chaîne `<li>`. `.join("")` rassemble ces chaînes sans ajouter de virgule entre elles.
-
-5. **Compléter une copie du modèle**
-
-   Le code copie `groupTemplate` dans `groupHtml`, puis appelle `replace()` pour remplacer les marqueurs par le nom du groupe et la liste générée. Chaque marqueur n’apparaissant qu’une fois, il suffit de remplacer sa première occurrence.
-
-6. **Rassembler toutes les cartes**
-
-   `html += groupHtml` ajoute chaque carte terminée à la chaîne HTML complète.
-
-7. **Afficher le résultat dans la page**
-
-   `app.innerHTML = html` interprète cette chaîne comme du HTML et insère les éléments obtenus dans `#app`.
-
-## Principales méthodes
-
-- `map()` transforme chaque étudiant en élément de liste HTML.
-- `join("")` rassemble les chaînes des éléments de liste en une seule chaîne.
-- `Object.entries()` fournit à la boucle les noms des groupes et les tableaux de leurs membres.
-- `replace()` remplace les marqueurs dans le modèle.
-- `innerHTML` insère le HTML complété dans le document.
+Les modèles HTML sont des littéraux de gabarit JavaScript, délimités par des accents graves. Les valeurs sont insérées avec la syntaxe `${expression}`, par exemple `${student.name}`. Le code n’utilise pas de marqueurs `{{...}}` ni de remplacement avec `replace()`.
 
 ## À retenir
 
-Cette technique aide à comprendre comment les données deviennent du HTML, mais `innerHTML` interprète son contenu comme du balisage. N’insérez pas directement dans ces chaînes du texte non fiable fourni par un utilisateur : échappez-le correctement ou ajoutez-le avec des méthodes du DOM comme `textContent`.
+Les fonctions séparent les responsabilités : le regroupement transforme les données, tandis que les fonctions `render...` construisent le HTML. `innerHTML` interprète le contenu comme du balisage ; pour des données provenant d’utilisateurs, il faut les échapper ou les insérer avec des méthodes du DOM comme `textContent`.

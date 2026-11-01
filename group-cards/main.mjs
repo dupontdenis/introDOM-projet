@@ -1,7 +1,11 @@
 import { students } from "../data.mjs";
-import { transformStudents } from "./transform.mjs";
-import { render } from "./render.mjs";
+import { transformStudentsToGroups } from "./transform.mjs";
+import { renderGroupCard } from "./render.mjs";
 
-const groups = transformStudents(students);
+const groups = transformStudentsToGroups(students);
 
-document.querySelector("#app").innerHTML = render(groups);
+const html = groups
+  .map(([group, groupStudents]) => renderGroupCard(group, groupStudents))
+  .join("");
+
+document.querySelector("#app").innerHTML = html;

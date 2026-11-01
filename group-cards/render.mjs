@@ -10,7 +10,7 @@ function renderStudentsList(students) {
 }
 
 // Génère la carte HTML d’un groupe et de ses étudiants.
-function renderGroupCard(group, students) {
+export function renderGroupCard(group, students) {
   return `
     <div class="col-md-4">
         <section class="card h-100 shadow-sm">
@@ -22,10 +22,3 @@ function renderGroupCard(group, students) {
     </div>
 `;
 }
-
-export function render(groups) {
-  return groups
-    .map(([groupName, students]) => renderGroupCard(groupName, students))
-    .join("");
-}
-

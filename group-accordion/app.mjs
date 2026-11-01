@@ -1,7 +1,11 @@
-import { students } from "./../data.mjs";
-import { transformStudentsToHtml } from "./transformStudentsToHtml.mjs";
+import { students } from "../data.mjs";
+import { groupStudentsByGroup } from "./transform.mjs";
+import { renderGroupAccordion } from "./render.mjs";
 
+const studentsByGroup = groupStudentsByGroup(students);
 
-const app = document.querySelector("#app");
+const groupsHtml = Object.entries(studentsByGroup)
+  .map(([group, groupStudents]) => renderGroupAccordion(group, groupStudents))
+  .join("");
 
-app.innerHTML = transformStudentsToHtml(students);
+document.querySelector("#accordionGroups").innerHTML = groupsHtml;

@@ -5,8 +5,8 @@ Cette page affiche une carte HTML pour chaque groupe d’étudiants. Le code est
 ## Organisation des fichiers
 
 - `../data.mjs` exporte le tableau initial `students`.
-- `transformStudents.mjs` exporte `groupStudentsByGroup(students)`, qui regroupe les étudiants selon la valeur de leur propriété `group`.
-- `renderGroups.mjs` contient les fonctions qui génèrent le HTML d’un étudiant, d’une liste d’étudiants et d’une carte de groupe. Seule `renderGroupCard` est exportée, car c’est la fonction utilisée par le module principal.
+- `transform.mjs` exporte `groupStudentsByGroup(students)`, qui regroupe les étudiants selon la valeur de leur propriété `group`.
+- `render.mjs` contient les fonctions qui génèrent le HTML d’un étudiant, d’une liste d’étudiants et d’une carte de groupe. Seule `renderGroupCard` est exportée, car c’est la fonction utilisée par le module principal.
 - `script.mjs` importe les données et les fonctions, construit le HTML de tous les groupes, puis l’insère dans l’élément `#app`.
 - `index.html` fournit l’élément `#app` et charge `script.mjs` comme module JavaScript.
 

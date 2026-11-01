@@ -1,6 +1,6 @@
-import { students } from "./../data.mjs";
-import { groupStudentsByGroup } from "./transformStudents.mjs";
-import { renderGroupCard } from "./renderGroups.mjs";
+import { students } from "../data.mjs";
+import { groupStudentsByGroup } from "./transform.mjs";
+import { renderGroupCard } from "./render.mjs";
 
 const app = document.querySelector("#app");
 

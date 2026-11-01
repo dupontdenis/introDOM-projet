@@ -31,7 +31,7 @@ function renderGroupCard(group, students) {
 const studentsByGroup = groupStudentsByGroup(students);
 
 const html = Object.entries(studentsByGroup)
-  .map(([group, members]) => renderGroupCard(group, members))
+  .map(([group, students]) => renderGroupCard(group, students))
   .join("");
 
 app.innerHTML = html;

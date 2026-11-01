@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Une carte par groupe</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="une-carte-par-groupe">Une carte par groupe</h1>
+<p>Cette page présente les étudiants du projet sous forme de cartes, avec une carte par groupe. Les données sont regroupées puis converties en HTML, affiché dans la page.</p>
+<h2 id="fichiers">Fichiers</h2>
+<ul>
+<li><code>../data.mjs</code> contient et exporte les données <code>students</code>.</li>
+<li><code>transform.mjs</code> regroupe les étudiants à partir de leur propriété <code>group</code> avec <code>Object.groupBy()</code>, puis transforme le résultat en paires <code>[groupe, étudiants]</code> avec <code>Object.entries()</code>.</li>
+<li><code>render.mjs</code> exporte <code>renderGroupCard(group, students)</code>, qui génère le HTML d’une carte. Les fonctions de rendu des étudiants et de leur liste restent internes au module.</li>
+<li><code>main.mjs</code> importe les données et les fonctions de transformation et de rendu, construit les cartes, puis les insère dans <code>#app</code>.</li>
+<li><code>index.html</code> fournit la page, charge Bootstrap depuis un CDN et exécute <code>main.mjs</code> comme module JavaScript.</li>
+<li><code>style.css</code> contient des styles supplémentaires, mais <code>index.html</code> ne le charge pas actuellement.</li>
+</ul>
+<h2 id="fonctionnement">Fonctionnement</h2>
+<p>Le traitement prévu suit ces étapes :</p>
+<ol>
+<li><code>main.mjs</code> récupère le tableau <code>students</code> depuis <code>../data.mjs</code>.</li>
+<li>Les étudiants sont regroupés par valeur de <code>group</code>.</li>
+<li>Chaque groupe est rendu dans une carte, avec une liste des noms de ses étudiants.</li>
+<li>Les cartes sont ajoutées à l’élément <code>#app</code> de la page.</li>
+</ol>
+<h2 id="lancer-la-page">Lancer la page</h2>
+<p>À la racine du projet, démarrez un serveur web local, par exemple avec l’extension Live Server de VS Code, puis ouvrez <code>group-cards/index.html</code>. Un serveur local permet au navigateur de charger correctement les modules ES.</p>
+<h2 id="à-vérifier-dans-le-code">À vérifier dans le code</h2>
+<p>Les noms d’exports utilisés dans <code>main.mjs</code> ne correspondent pas à ceux actuellement déclarés dans <code>transform.mjs</code> : le point d’entrée importe <code>transformStudentsToGroups</code>, tandis que le module exporte <code>transformStudents</code>. La page ne pourra donc pas s’exécuter tant que ces noms ne seront pas alignés. Par ailleurs, <code>transformStudents</code> produit des paires <code>[groupe, étudiants]</code>, ce qui correspond à la forme attendue par la boucle de rendu de <code>main.mjs</code> une fois l’import corrigé.</p>
+<p>Le rendu utilise <code>innerHTML</code>. Les noms affichés proviennent des données du projet ; si des données non fiables sont ajoutées, il faudra les insérer comme texte ou les échapper avant de les inclure dans du HTML.# Une carte par groupe</p>
+<p>Cette page présente les étudiants sous forme de cartes, à raison d’une carte par groupe. Le code est réparti en modules qui distinguent les données, leur transformation et leur rendu.</p>
+<h2 id="organisation-des-fichiers">Organisation des fichiers</h2>
+<ul>
+<li><code>../data.mjs</code> fournit le tableau de données <code>students</code>.</li>
+<li><code>transform.mjs</code> exporte deux fonctions : <code>groupStudentsByGroup(students)</code>, qui rassemble les étudiants selon leur propriété <code>group</code>, et <code>transformStudents(students)</code>, qui retourne les groupes sous forme de paires <code>[groupe, étudiants]</code>.</li>
+<li><code>render.mjs</code> exporte <code>render(groups)</code>, qui génère le HTML des cartes de tous les groupes. Les fonctions de rendu d’un étudiant et d’une carte restent internes au module.</li>
+<li><code>main.mjs</code> importe les données, <code>transformStudents</code> et <code>render</code>, puis insère le HTML obtenu dans l’élément <code>#app</code>.</li>
+<li><code>index.html</code> contient l’élément <code>#app</code> et charge <code>main.mjs</code> en tant que module JavaScript.</li>
+</ul>
+<h2 id="du-tableau-aux-cartes">Du tableau aux cartes</h2>
+<ol>
+<li><code>main.mjs</code> récupère <code>students</code> depuis <code>../data.mjs</code>.</li>
+<li><code>transformStudents(students)</code> appelle <code>groupStudentsByGroup(students)</code>, qui s’appuie sur <code>Object.groupBy()</code> pour rassembler les étudiants par groupe.</li>
+<li>La fonction convertit ensuite l’objet obtenu en paires <code>[groupe, étudiants]</code> avec <code>Object.entries()</code>.</li>
+<li><code>render(groups)</code> crée une carte pour chaque paire, puis réunit les cartes dans une chaîne HTML.</li>
+<li>Chaque carte utilise <code>renderStudentsList()</code> pour produire la liste du groupe. Cette fonction crée un élément <code>&lt;li&gt;</code> pour chaque étudiant à l’aide de <code>renderStudentItem()</code>.</li>
+<li>Enfin, <code>document.querySelector(&quot;#app&quot;).innerHTML = render(groups)</code> insère le résultat dans la page.</li>
+</ol>
+<h2 id="littéraux-de-gabarit">Littéraux de gabarit</h2>
+<p>Le HTML est construit avec des littéraux de gabarit JavaScript, délimités par des accents graves. Les expressions <code>${...}</code> permettent d’y intégrer des valeurs, comme <code>${student.name}</code>. Le code utilise cette interpolation native, et non des marqueurs <code>{{...}}</code> ou la méthode <code>replace()</code>.</p>
+<h2 id="lancer-la-page-1">Lancer la page</h2>
+<p>Ouvrez <code>index.html</code> depuis un serveur local, par exemple avec l’extension Live Server de VS Code. Le navigateur pourra ainsi charger les modules JavaScript via les imports ES modules.</p>
+<h2 id="sécurité">Sécurité</h2>
+<p><code>innerHTML</code> interprète le contenu comme du HTML. Les noms affichés proviennent actuellement des données du projet. Si vous ajoutez des données non fiables, échappez-les ou insérez-les dans le DOM avec une méthode comme <code>textContent</code>.</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

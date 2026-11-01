@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filtrer les groupes avec un menu déroulant</title>
+</head>
+
+<body>
+  <main>
+    <h1>Filtrer les groupes avec un menu déroulant</h1>
+    <p>Cette page filtre les groupes d’étudiants à l’aide d’un menu déroulant. Les options sont créées à partir des
+      groupes présents dans les données.</p>
+    <h2>Fonctionnement</h2>
+    <ul>
+      <li><code>Object.groupBy()</code> regroupe les étudiants selon leur propriété <code>group</code>, puis
+        <code>Object.entries()</code> fournit les paires groupe et membres.
+      </li>
+      <li>Les noms de groupes uniques sont ajoutés au menu avec <code>document.createElement()</code> et
+        <code>append()</code>.
+      </li>
+      <li><code>renderGroups(query)</code> affiche tous les groupes si la requête est vide, ou uniquement le groupe
+        sélectionné.</li>
+      <li>L’événement <code>change</code> relance le rendu après chaque sélection. Un premier rendu affiche tous les
+        groupes au chargement.</li>
+    </ul>
+    <h2>À essayer</h2>
+    <p>Changez le groupe sélectionné, puis ajoutez un étudiant d’un nouveau groupe dans <code>data.mjs</code>. Rechargez
+      la page pour vérifier que le groupe apparaît dans le menu.</p>
+    <p>Ouvrez <code>index.html</code> depuis un serveur web local. Cet exercice utilise des modules JavaScript et
+      <code>Object.groupBy()</code>, qui nécessite un navigateur moderne.
+    </p>
+  </main>
+</body>
+
+</html>

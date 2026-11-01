@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grille d’étudiants par groupe</title>
+</head>
+
+<body>
+  <main>
+    <h1>Grille d’étudiants par groupe</h1>
+    <p>Cette page affiche un titre et des cartes pour chaque étudiant. Une grille CSS est générée dynamiquement afin de
+      placer les éléments dans la colonne de leur groupe.</p>
+    <h2>Organisation des fichiers</h2>
+    <ul>
+      <li><code>studentsData.mjs</code> contient des données locales d’exemple. <code>main.mjs</code> importe
+        actuellement les données partagées depuis <code>../data.mjs</code>.</li>
+      <li><code>transformStudentsToCards.mjs</code> prépare les titres de groupe et les cartes HTML des étudiants.</li>
+      <li><code>generateDynamicCSS.mjs</code> produit les règles de grille selon les groupes présents.</li>
+      <li><code>renderToDom.mjs</code> insère les éléments HTML dans le conteneur.</li>
+      <li><code>main.mjs</code> coordonne les transformations, les styles et le rendu.</li>
+      <li><code>index.html</code> fournit le conteneur <code>.amphi</code>, charge Bootstrap et exécute
+        <code>main.mjs</code>.
+      </li>
+    </ul>
+    <h2>Lancer la page</h2>
+    <p>Depuis la racine du projet, démarrez un serveur web local puis ouvrez <code>group-grid/index.html</code>. La page
+      utilise des modules JavaScript et charge Bootstrap depuis un CDN.</p>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartes par groupe</title>
+</head>
+
+<body>
+  <main>
+    <h1>Cartes par groupe</h1>
+    <p><code>script.mjs</code> regroupe les étudiants par groupe et génère une carte Bootstrap pour chaque groupe.</p>
+    <h2>Fonctionnement</h2>
+    <ol>
+      <li>Le script importe <code>students</code> depuis <code>../data.mjs</code>.</li>
+      <li><code>Object.groupBy()</code> rassemble les étudiants selon leur propriété <code>group</code>.</li>
+      <li>Chaque groupe est converti en carte contenant la liste de ses étudiants.</li>
+      <li>Les cartes sont insérées dans l’élément <code>#app</code>.</li>
+    </ol>
+    <h2>Utilisation</h2>
+    <p>Ce dossier contient uniquement <code>script.mjs</code> et ne fournit pas de page <code>index.html</code>. Pour
+      exécuter le script dans un navigateur, ajoutez-le à une page qui contient un élément <code>id="app"</code> et
+      charge <code>script.mjs</code> avec <code>type="module"</code>. Servez la page depuis un serveur local afin de
+      permettre les imports ES modules.</p>
+    <p>Le script utilise <code>innerHTML</code> pour insérer le rendu. N’utilisez pas de données non fiables sans les
+      échapper.</p>
+  </main>
+</body>
+
+</html>

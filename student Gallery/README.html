@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trombinoscope étudiant</title>
+</head>
+
+<body>
+  <main>
+    <h1>Trombinoscope étudiant</h1>
+    <p>Cette page crée une galerie de cartes à partir des étudiants de <code>data.mjs</code>. Elle calcule leur moyenne
+      et signale les notes insuffisantes avec une couleur de carte.</p>
+    <h2>Organisation des fichiers</h2>
+    <ul>
+      <li><code>data.mjs</code> exporte les étudiants, leurs notes et les URL de leurs images.</li>
+      <li><code>mcc.mjs</code> calcule la moyenne de chaque étudiant et indique si une note est inférieure à 7.</li>
+      <li><code>makeCards.mjs</code> génère une carte ou une liste de cartes pour les étudiants.</li>
+      <li><code>app.mjs</code> calcule les moyennes et insère les cartes dans <code>#trombinoscope</code>.</li>
+      <li><code>index.html</code> fournit le conteneur de la galerie et charge <code>app.mjs</code> comme module.</li>
+    </ul>
+    <h2>Lancer la page</h2>
+    <p>Depuis la racine du projet, démarrez un serveur web local puis ouvrez <code>student%20Gallery/index.html</code>
+      (le nom du dossier contient un espace). Bootstrap et les images sont chargés depuis des URL externes, une
+      connexion Internet est nécessaire.</p>
+    <p>Les cartes sont générées avec <code>innerHTML</code>. N’injectez pas de données non fiables sans les échapper.
+    </p>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accordéon par groupe avec modèles</title>
+</head>
+
+<body>
+  <main>
+    <h1>Accordéon par groupe avec modèles</h1>
+    <p>Cette page présente les étudiants dans un accordéon Bootstrap. Le HTML est construit à partir de modèles
+      contenant des marqueurs remplacés par les valeurs des données.</p>
+    <h2>Organisation des fichiers</h2>
+    <ul>
+      <li><code>../data.mjs</code> fournit le tableau de données <code>students</code>.</li>
+      <li><code>transformStudentsToHtml.mjs</code> regroupe les étudiants avec <code>Object.groupBy()</code>, construit
+        les sections et remplace les marqueurs des modèles.</li>
+      <li><code>app.mjs</code> transmet les données à <code>transformStudentsToHtml()</code> et insère le résultat dans
+        <code>#app</code>.
+      </li>
+      <li><code>index.html</code> charge Bootstrap et le module <code>app.mjs</code>.</li>
+    </ul>
+    <h2>Fonctionnement</h2>
+    <ol>
+      <li>Les étudiants sont regroupés par propriété <code>group</code>.</li>
+      <li>Chaque groupe et ses étudiants sont rendus avec des modèles HTML contenant des marqueurs comme
+        <code>{{group}}</code>, <code>{{name}}</code> et <code>{{mark}}</code>.
+      </li>
+      <li>Le conteneur complet de l’accordéon est inséré dans la page.</li>
+      <li>Bootstrap gère l’ouverture et la fermeture des sections.</li>
+    </ol>
+    <h2>Lancer la page</h2>
+    <p>Depuis la racine du projet, démarrez un serveur web local, puis ouvrez
+      <code>group-accordion-replace/index.html</code>. Bootstrap est chargé depuis un CDN et nécessite une connexion
+      Internet.
+    </p>
+    <h2>Sécurité</h2>
+    <p>Le HTML produit est inséré avec <code>innerHTML</code>. N’insérez pas de données non fiables dans les modèles
+      sans les échapper.</p>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tests des modules et du regroupement</title>
+</head>
+
+<body>
+  <main>
+    <h1>Tests des modules et du regroupement</h1>
+    <p>Ce dossier contient deux petits scripts de vérification utilisant les données partagées du projet.</p>
+    <h2>Scripts</h2>
+    <ul>
+      <li><code>groupeBy.mjs</code> regroupe les étudiants par propriété <code>group</code> avec
+        <code>Object.groupBy()</code> et affiche le résultat dans la console, notamment sous forme JSON.</li>
+      <li><code>import.mjs</code> vérifie l’import des données et affiche le nom du premier étudiant.</li>
+    </ul>
+    <h2>Exécuter</h2>
+    <p>Depuis la racine du projet, utilisez un runtime JavaScript prenant en charge les modules ES et
+      <code>Object.groupBy()</code> :</p>
+    <pre><code>node test/groupeBy.mjs
+node test/import.mjs</code></pre>
+  </main>
+</body>
+
+</html>
